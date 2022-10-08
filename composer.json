@@ -1,38 +1,39 @@
 {
-    "name": "noisywinds/laravel-smartmd",
-    "description": "a laravel markdown editor",
-    "type": "library",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "noisywinds",
-            "email": "1624389686@qq.com"
-        }
-    ],
-    "require": {
-        "php": ">=7.0.0",
-        "laravel/framework": "~5.4",
-        "intervention/image": "^2.4",
-        "phpunit/phpunit": "^7.4"
-    },
-    "require-dev": {
-        "laravel/laravel": "~5.4",
-        "intervention/image": "^2.4"
-    },
-    "autoload": {
-        "psr-4": {
-            "NoisyWinds\\Smartmd\\": "src/"
-        }
-    },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "NoisyWinds\\Smartmd\\SmartmdServiceProvider"
-            ],
-            "aliases": {
-                "Smartmd": "NoisyWinds\\Smartmd\\Facades\\Smartmd"
-            }
-
-        }
+  "name": "noisywinds/laravel-smartmd",
+  "description": "a laravel markdown editor",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "noisywinds",
+      "email": "1624389686@qq.com"
     }
+  ],
+  "require": {
+    "php": ">=8.0.2",
+    "laravel/framework": "^9",
+    "intervention/image": "^2.7.2",
+    "phpunit/phpunit": "^8",
+    "intervention/imagecache": "^2.5"
+  },
+  "require-dev": {
+    "laravel/laravel": "^9",
+    "intervention/image": "^2.4",
+    "intervention/imagecache": "^2.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "NoisyWinds\\Smartmd\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "NoisyWinds\\Smartmd\\SmartmdServiceProvider"
+      ],
+      "aliases": {
+        "Smartmd": "NoisyWinds\\Smartmd\\Facades\\Smartmd"
+      }
+    }
+  }
 }
