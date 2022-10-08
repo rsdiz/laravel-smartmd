@@ -17,7 +17,9 @@ class UploadController extends Controller
         if ($validator->passes()) {
             $temp = $request->file('image');
             $name = $temp->hashName();
-            $im = Image::make($temp->getPathname());
+            $im = Image::cache(function ($image) use ($temp) {
+                $image->make($temp->getPathname());
+            });
             $width = $im->width();
             $height = $im->height();
             if ($width > 1200) {
@@ -38,6 +40,6 @@ class UploadController extends Controller
                 ]
             );
         }
-        return response()->json(['message' => $validator->errors()->first()],400);
+        return response()->json(['message' => $validator->errors()->first()], 400);
     }
 }
