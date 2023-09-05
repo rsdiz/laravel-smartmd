@@ -10,14 +10,14 @@
     }
   ],
   "require": {
-    "php": ">=8.0.2",
-    "laravel/framework": "^9",
+    "php": ">=8.1.0",
+    "laravel/framework": "^10",
     "intervention/image": "^2.7.2",
-    "phpunit/phpunit": "^9",
+    "phpunit/phpunit": "^10",
     "intervention/imagecache": "^2.5"
   },
   "require-dev": {
-    "laravel/laravel": "^9",
+    "laravel/laravel": "^10",
     "intervention/image": "^2.4",
     "intervention/imagecache": "^2.5"
   },
