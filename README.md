@@ -9,7 +9,7 @@
 <p align="center">
 <a href="https://travis-ci.org/NoisyWinds/laravel-smartmd"><img src="https://travis-ci.org/NoisyWinds/laravel-smartmd.svg?branch=master"></a>
 <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square" alt="Software License"></img></a>
-<a href="https://laravel.com"><img src="https://img.shields.io/badge/laravel-5.4-green.svg" alt="Software License"></img></a>
+<a href="https://laravel.com"><img src="https://img.shields.io/badge/laravel-10.0-green.svg" alt="Software License"></img></a>
 <a href="https://packagist.org/packages/noisywinds/laravel-smartmd"><img src="https://img.shields.io/packagist/v/NoisyWinds/laravel-smartmd.svg" alt="packagist"></img></a>
 </p>
 
@@ -35,8 +35,8 @@ Reference:
 - intervention (image handling) [link](https://github.com/Intervention/image)
 
 ## requirements
-- PHP >= 7.1.0
-- Laravel >= 5.4.0
+- PHP >= 8.1.0
+- Laravel >= 10.0.0
 
 ## Installation
 First, install package.
@@ -140,9 +140,9 @@ new Smartmd({
 ```
 ParseController.php
 ```
-use NoisyWinds\Smartmd\Markdown;
+use Parsedown;
 
-$parse = new Markdown();
+$parse = new Parsedown();
 $text = "# Your markdown text";
 $html = $parse->text($text);
 return view('Smartmd::php-show',['content'=>$html]);

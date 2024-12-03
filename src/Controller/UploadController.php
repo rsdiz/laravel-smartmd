@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Smartmd;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
-use Intervention\Image\Facades\Image;
+use Intervention\Image\Laravel\Facades\Image;
 
 class UploadController extends Controller
 {
@@ -17,9 +17,7 @@ class UploadController extends Controller
         if ($validator->passes()) {
             $temp = $request->file('image');
             $name = $temp->hashName();
-            $im = Image::cache(function ($image) use ($temp) {
-                $image->make($temp->getPathname());
-            });
+            $im = Image::read($temp->getPathname());
             $width = $im->width();
             $height = $im->height();
             if ($width > 1200) {
