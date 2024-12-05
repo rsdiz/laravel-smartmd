@@ -35,8 +35,8 @@ Reference:
 - intervention (image handling) [link](https://github.com/Intervention/image)
 
 ## requirements
-- PHP >= 8.1.0
-- Laravel >= 10.0.0
+- PHP >= 8.2.0
+- Laravel >= 11.0.0
 
 ## Installation
 First, install package.
@@ -140,9 +140,9 @@ new Smartmd({
 ```
 ParseController.php
 ```
-use Parsedown;
+use NoisyWinds\Smartmd\Markdown;
 
-$parse = new Parsedown();
+$parse = new Markdown();
 $text = "# Your markdown text";
 $html = $parse->text($text);
 return view('Smartmd::php-show',['content'=>$html]);
