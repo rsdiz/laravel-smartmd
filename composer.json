@@ -10,18 +10,23 @@
     }
   ],
   "require": {
-    "php": ">=8.1.0",
-    "laravel/framework": "^10",
-    "phpunit/phpunit": "^10",
+    "php": "^8.2",
+    "laravel/framework": "^11",
+    "phpunit/phpunit": "^11",
     "intervention/image-laravel": "^1.3",
-    "erusev/parsedown": "^1.7"
+    "erusev/parsedown": "^1.8.0-beta-7"
   },
   "require-dev": {
-    "laravel/laravel": "^10"
+    "laravel/laravel": "^11"
   },
   "autoload": {
     "psr-4": {
       "NoisyWinds\\Smartmd\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
     }
   },
   "extra": {
