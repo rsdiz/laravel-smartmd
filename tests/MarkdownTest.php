@@ -1,6 +1,6 @@
 <?php
 
-use NoisyWinds\Smartmd;
+use NoisyWinds\Smartmd\Markdown;
 use PHPUnit\Framework\TestCase;
 class MarkdownTest extends TestCase {
     public function __construct($name = null, array $data = [],$dataName = '')
@@ -8,7 +8,7 @@ class MarkdownTest extends TestCase {
         parent::__construct($name, $data, $dataName);
     }
     function testRawMath(){
-        $extension = new Smartmd\Markdown;
+        $extension = new Markdown();
         $math = "# header\n\$\$x = 1\$\$";
         $flow = "```\ngraph LR\nA-->B```";
         $expectedMarkup = "<h1>header</h1>\n<p><span class=\"math\">x = 1</span></p>";
