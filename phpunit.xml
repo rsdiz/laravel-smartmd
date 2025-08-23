@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/11.0/phpunit.xsd"
+         bootstrap="vendor/autoload.php"
+         colors="true"
+         cacheDirectory=".phpunit.cache"
+         failOnWarning="true"
+         failOnRisky="true"
+         failOnEmptyTestSuite="true"
+         beStrictAboutOutputDuringTests="true"
+         beStrictAboutTodoAnnotatedTests="true"
+         beStrictAboutChangesToGlobalState="true">
+    
+    <testsuites>
+        <testsuite name="Laravel Smartmd Test Suite">
+            <directory>tests</directory>
+        </testsuite>
+    </testsuites>
+    
+    <source>
+        <include>
+            <directory>src</directory>
+        </include>
+        <exclude>
+            <directory>src/views</directory>
+            <directory>src/static</directory>
+            <file>src/config/smartmd.php</file>
+        </exclude>
+    </source>
+    
+    <coverage>
+        <report>
+            <html outputDirectory="coverage-html" lowUpperBound="50" highLowerBound="80"/>
+            <text outputFile="coverage.txt" showUncoveredFiles="false" showOnlySummary="true"/>
+            <clover outputFile="coverage.xml"/>
+        </report>
+    </coverage>
+    
+    <php>
+        <env name="APP_ENV" value="testing"/>
+        <env name="APP_KEY" value="base64:2fl+Ktvkfl+Fuz4Qp/A75G2RTiWVA/ZoKZvp6fiiM10="/>
+        <env name="DB_CONNECTION" value="sqlite"/>
+        <env name="DB_DATABASE" value=":memory:"/>
+        <env name="CACHE_DRIVER" value="array"/>
+        <env name="SESSION_DRIVER" value="array"/>
+        <env name="QUEUE_DRIVER" value="sync"/>
+        <env name="SMARTMD_IMAGE_ROOT" value="tests/fixtures/images"/>
+        <env name="SMARTMD_IMAGE_URL" value="http://localhost/test-images"/>
+    </php>
+    
+    <logging>
+        <junit outputFile="junit.xml"/>
+    </logging>
+</phpunit>
