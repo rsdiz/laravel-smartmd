@@ -1,8 +1,9 @@
 {
   "name": "noisywinds/laravel-smartmd",
-  "description": "a laravel markdown editor",
+  "description": "A modern Laravel Markdown editor with enhanced features and Laravel 12 compatibility",
   "type": "library",
   "license": "MIT",
+  "keywords": ["laravel", "markdown", "editor", "codemirror", "math", "mermaid"],
   "authors": [
     {
       "name": "noisywinds",
@@ -11,13 +12,14 @@
   ],
   "require": {
     "php": "^8.2",
-    "laravel/framework": "^11",
-    "phpunit/phpunit": "^11",
+    "laravel/framework": "^11.0||^12.0",
     "intervention/image-laravel": "^1.3",
     "erusev/parsedown": "^1.8.0-beta-7"
   },
   "require-dev": {
-    "laravel/laravel": "^11"
+    "phpunit/phpunit": "^11",
+    "laravel/laravel": "^11.0||^12.0",
+    "orchestra/testbench": "^9.0||^10.0"
   },
   "autoload": {
     "psr-4": {
@@ -26,8 +28,14 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "Tests\\": "tests/"
+      "NoisyWinds\\Smartmd\\Tests\\": "tests/"
     }
+  },
+  "minimum-stability": "stable",
+  "prefer-stable": true,
+  "config": {
+    "sort-packages": true,
+    "optimize-autoloader": true
   },
   "extra": {
     "laravel": {
@@ -37,6 +45,13 @@
       "aliases": {
         "Smartmd": "NoisyWinds\\Smartmd\\Facades\\Smartmd"
       }
+    },
+    "branch-alias": {
+      "dev-main": "2.0-dev"
     }
+  },
+  "scripts": {
+    "test": "vendor/bin/phpunit",
+    "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
   }
 }
