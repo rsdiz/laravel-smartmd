@@ -1,159 +1,125 @@
-# Laravel-smartmd
+# Laravel Smartmd
 
-![](https://xiaoqingxin.site/images/default_img.jpg)
+[![PHP Version](https://img.shields.io/badge/php-%5E8.2-blue.svg)](https://php.net/)
+[![Laravel Version](https://img.shields.io/badge/laravel-%5E11.0%20%7C%7C%20%5E12.0-red.svg)](https://laravel.com/)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Tests](https://img.shields.io/badge/tests-PHPUnit%2011-brightgreen.svg)](phpunit.xml)
 
-<p align="center">
- <a href="./docs/docs_EN.md">Documentation</a> | <a href="./docs/docs_CN.md">中文文档</a>
-</p>
+A modern, feature-rich Laravel Markdown editor with enhanced functionality and Laravel 12 compatibility. This package provides a simple yet powerful Markdown editor that's compatible with most Markdown parsers and supports advanced features like mathematical formulas, Mermaid diagrams, and optimized image uploads.
 
-<p align="center">
-<a href="https://travis-ci.org/NoisyWinds/laravel-smartmd"><img src="https://travis-ci.org/NoisyWinds/laravel-smartmd.svg?branch=master"></a>
-<a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square" alt="Software License"></img></a>
-<a href="https://laravel.com"><img src="https://img.shields.io/badge/laravel-10.0-green.svg" alt="Software License"></img></a>
-<a href="https://packagist.org/packages/noisywinds/laravel-smartmd"><img src="https://img.shields.io/packagist/v/NoisyWinds/laravel-smartmd.svg" alt="packagist"></img></a>
-</p>
+## ✨ Features
 
-A simple markdown editor compatible most markdown parse,You can choose any parse methods on server or client,like Mathematical formula、flowchart、upload image...
-this program is a plugin for laravel 5.4 and php 7.1 upper.more feature develop now...    
+- 🎯 **Laravel 11 & 12 Compatible** - Full support for modern Laravel versions
+- 📝 **Enhanced Markdown Parser** - Extended Parsedown with additional features
+- 🧮 **Mathematical Expressions** - LaTeX/MathJax support for complex formulas
+- 📊 **Mermaid Diagrams** - Flowcharts, sequence diagrams, and more
+- 🖼️ **Smart Image Uploads** - Automatic optimization and resizing
+- 🔒 **Security First** - Built-in XSS protection and content sanitization
+- 🎨 **Syntax Highlighting** - Enhanced code block rendering
+- ⚡ **Performance Optimized** - Efficient parsing with optional caching
+- 🧪 **Comprehensive Tests** - PHPUnit 11 compatible test suite
+- 📘 **Type Declarations** - Full PHP 8.2+ type safety    
 
-##  Screenshots
-editor demo: [Demo](https://xiaoqingxin.site/editor/write)   
-js render page [Demo](https://xiaoqingxin.site/editor/js-show)  
-php render page [Demo](https://xiaoqingxin.site/editor/php-show)
-  
-  ![](./docs/screenshot.png)
-  --- 
-  ![](./docs/screenshot_02.gif) 
-  ---
-  ![](./docs/screenshot_03.gif)
+## 📋 Requirements
 
-Reference:
-- CodeMirror [link](https://github.com/codemirror/CodeMirror) 
-- Simplemde-markdown [link](https://github.com/sparksuite/simplemde-markdown-editor)
-- markdown-it (markdown render) [link](https://github.com/markdown-it/markdown-it)
-- mermaid (flowchart) [link](https://github.com/knsv/mermaid)
-- intervention (image handling) [link](https://github.com/Intervention/image)
+- PHP ^8.2
+- Laravel ^11.0 || ^12.0
+- Intervention Image Laravel ^1.3
+- Parsedown ^1.8.0-beta-7
 
-## requirements
-- PHP >= 8.2.0
-- Laravel >= 11.0.0
+## 🚀 Installation
 
-## Installation
-First, install package.
-```
+### 1. Install via Composer
+
+```bash
 composer require noisywinds/laravel-smartmd
 ```
-Then run these commands to publish assets and config：
+
+### 2. Publish Assets and Configuration
+
+```bash
+# Publish all assets at once
+php artisan vendor:publish --tag=smartmd
+
+# Or publish individually
+php artisan vendor:publish --tag=smartmd-config
+php artisan vendor:publish --tag=smartmd-views
+php artisan vendor:publish --tag=smartmd-assets
+php artisan vendor:publish --tag=smartmd-controllers
 ```
-php artisan vendor:publish --provider="NoisyWinds\Smartmd\SmartmdServiceProvider"
-```
-make test view router:
-```
-Route::group(['namespace' => 'Smartmd', 'prefix' => 'editor'], function () {
-    Route::post('/upload', 'UploadController@imSave');
-    Route::get('/write', function () {
-        return view('vendor/smartmd/write');
-    });
-    Route::get('/php-show','ParseController@index');
-    Route::get('/js-show',function(){
-        return view('vendor/smartmd/js-show');
-    });
-});
-```
-Rewrite UploadController or config/smartmd.php to change upload path:
+
+### 3. Configure Routes
+
+Add the following routes to your `routes/web.php`:
+
 ```php
-<?php
-return [
-    "image" => [
-        /*
-         * like filesystem, Where do you like to place pictures?
-         */
-        "root" => storage_path('app/public/images'),
-        /*
-         * return public image path
-         */
-        "url" => env('APP_URL').'/storage/images',
-    ],
-];
-```
-* notice: uploda image will optimize and resize in the UploadController
+use App\Http\Controllers\Smartmd\ParseController;
+use App\Http\Controllers\Smartmd\UploadController;
 
-## Some shortcode
-1. Bold (Ctrl + b)
-2. Italic (Ctrl + I)
-3. Insert Image (Ctrl + Alt + I)
-4. Insert Math (Ctrl + m)
-5. Insert flowchart (Ctrl + Alt + m)
-6. more... (mac command the same with ctrl)
+// Markdown parsing routes
+Route::get('/smartmd/demo', [ParseController::class, 'index'])->name('smartmd.demo');
+Route::post('/smartmd/parse', [ParseController::class, 'parse'])->name('smartmd.parse');
 
-
-## editor options
-```javascript
-new Smartmd({
-   // editor element {string} 
-   el: "#editor",
-   
-   // editor wrapper layout {string or number}
-   height: "400px",
-   width: "100%",
-   
-   // autosave 
-   autoSave: {
-     // uuid is required {string or number}
-     uuid: 1,
-     // {number}
-     delay: 5000
-   },
-   
-   // init state {boolean}
-   isFullScreen: true, // default false
-   isPreviewActive: true // default false
-});
+// Image upload route
+Route::post('/smartmd/upload', [UploadController::class, 'imSave'])->name('smartmd.upload');
 ```
 
-## parse markdown 
-#### I don't need editor:
-```html
-// require in your view meta
-@include('Smartmd::js-parse')
-```
-```
-<script>
-    // create Parsemd object use javascript parse markdown
-    var parse = new Parsemd();
-    var html = parse.render(document.getElementById("editor").value.replace(/^\s+|\s+$/g, ''));
-    document.getElementById("content").innerHTML = html;
-</script>
-```
-#### I need editor:
-```html
-<script>
-    var smartmd = new Smartmd();
-    smartmd.markdown("# hello world");
-</script>
-```
-#### I want php render:
-* only render Formula、Flowchart、Code highlight use JavaScript
-```html
-// require in your view meta
-@include('Smartmd::php-parse')
-```
-ParseController.php
-```
-use NoisyWinds\Smartmd\Markdown;
+## ⚙️ Configuration
 
-$parse = new Markdown();
-$text = "# Your markdown text";
-$html = $parse->text($text);
-return view('Smartmd::php-show',['content'=>$html]);
+The configuration file provides extensive customization options. See the published config file for details.
 
+## 🎯 Usage
+
+### Basic Usage with Facade
+
+```php
+use NoisyWinds\Smartmd\Facades\Smartmd;
+
+// Parse markdown with enhanced features
+$html = Smartmd::parse('# Hello World\n\nThis is **bold** text.');
+
+// Access configuration
+$maxSize = Smartmd::config('image.max_size', 4096);
 ```
 
-## How to expand
-#### editor
-- CodeMirror [link](https://github.com/codemirror/CodeMirror) 
-#### markdown render
-- markdown-it (markdown render) [link](https://github.com/markdown-it/markdown-it)
-## issue 
-Welcome to ask questions or what features you want to be compatible with.
+### In Blade Views
 
+```blade
+@extends('layouts.app')
+
+@section('content')
+    @include('Smartmd::write')
+@endsection
+```
+
+## 📚 Advanced Features
+
+- Mathematical expressions with LaTeX support
+- Mermaid diagrams and flowcharts
+- Enhanced code highlighting
+- Smart image uploads with optimization
+- Security features and XSS protection
+
+## 🧪 Testing
+
+```bash
+# Run tests
+composer test
+
+# Run with coverage
+composer test-coverage
+```
+
+## 📄 License
+
+MIT Licensed. See LICENSE file for details.
+
+## 🙏 Acknowledgments
+
+- Built on top of [Parsedown](https://parsedown.org/)
+- Image processing by [Intervention Image](http://image.intervention.io/)
+- Inspired by modern markdown editors
+
+---
+
+**Laravel Smartmd** - Making Markdown editing powerful and secure in Laravel applications.
