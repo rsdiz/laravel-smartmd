@@ -1,2 +1,19 @@
 /vendor
 .idea
+
+# PHPUnit
+.phpunit.cache/
+junit.xml
+coverage/
+
+# Composer
+composer.lock
+
+# Laravel
+.env
+.env.*
+storage/logs/*
+storage/framework/cache/*
+storage/framework/sessions/*
+storage/framework/views/*
+bootstrap/cache/*
