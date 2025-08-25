@@ -1,7 +1,7 @@
 # Laravel Smartmd
 
 [![PHP Version](https://img.shields.io/badge/php-%5E8.2-blue.svg)](https://php.net/)
-[![Laravel Version](https://img.shields.io/badge/laravel-%5E11.0%20%7C%7C%20%5E12.0-red.svg)](https://laravel.com/)
+[![Laravel Version](https://img.shields.io/badge/laravel-%5E12.0-red.svg)](https://laravel.com/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Tests](https://img.shields.io/badge/tests-PHPUnit%2011-brightgreen.svg)](phpunit.xml)
 
@@ -9,7 +9,7 @@ A modern, feature-rich Laravel Markdown editor with enhanced functionality and L
 
 ## ✨ Features
 
-- 🎯 **Laravel 11 & 12 Compatible** - Full support for modern Laravel versions
+- 🎯 **Laravel 12 Compatible** - Full support for modern Laravel versions
 - 📝 **Enhanced Markdown Parser** - Extended Parsedown with additional features
 - 🧮 **Mathematical Expressions** - LaTeX/MathJax support for complex formulas
 - 📊 **Mermaid Diagrams** - Flowcharts, sequence diagrams, and more
@@ -23,7 +23,7 @@ A modern, feature-rich Laravel Markdown editor with enhanced functionality and L
 ## 📋 Requirements
 
 - PHP ^8.2
-- Laravel ^11.0 || ^12.0
+- Laravel ^12.0
 - Intervention Image Laravel ^1.3
 - Parsedown ^1.8.0-beta-7
 
